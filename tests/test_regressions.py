@@ -1,6 +1,8 @@
 import pytest
 from backend.core import Advisory, Asset, Denied, ingest_advisory, reconcile
-from tests.test_core import call, change, reveal, state, verify  # noqa: F401
+from tests.test_core import call, change, reveal, verify
+
+pytest_plugins = ["tests.test_core"]
 
 
 def test_import_cannot_forge_observer_state(state):

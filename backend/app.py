@@ -11,6 +11,8 @@ from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.staticfiles import StaticFiles
 from pydantic import Field, ValidationError
+import httpx
+from connectors.public import CVE, PublicIntelligence
 
 from backend.core import (PERMISSIONS, Advisory, Asset, Denied, Store, Strict,
                           approve, audit, gateway, ingest_advisory, paths, reconcile)
@@ -159,6 +161,21 @@ def create_app(database=None):
                            description="Synthetic vendor confirms 1.4 affected and 1.5 fixed; unknown worker version still needs evidence.")
             eid = ingest_advisory(s, Advisory.model_validate(updated), user["name"], trusted_patch=True)
         return {"evidence": eid}
+
+    @app.post("/api/sync/cve")
+    def sync_cve(body: CVE, user=Depends(principal)):
+        require(user, "analyst", "admin")
+        try:
+            with httpx.Client(timeout=15, follow_redirects=False, trust_env=False) as client:
+                result = PublicIntelligence(client).cve(body.id)
+            with store.transaction() as s:
+                eid = ingest_advisory(s, Advisory.model_validate(result["normalized"]), user["name"])
+                s["evidence"][eid]["original_responses"] = result["raw"]
+            return {"evidence": eid, "limitation": result["limitation"]}
+        except (httpx.HTTPError, ValueError, KeyError, IndexError) as error:
+            with store.transaction() as s:
+                audit(s, user["name"], "sync-failed", {"source": "public-cve", "cve": body.id})
+            raise HTTPException(502, "Public intelligence unavailable or malformed; no partial import") from error
 
     @app.post("/api/inventory")
     def inventory(body: list[Asset], user=Depends(principal)):

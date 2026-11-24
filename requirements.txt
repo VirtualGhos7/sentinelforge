@@ -1,0 +1,8 @@
+fastapi==0.162.5
+uvicorn==0.54.0
+SQLAlchemy==2.0.58
+networkx==3.4.2
+packaging==26.4
+httpx==0.28.1
+pydantic==2.14.4
+starlette==1.7.0

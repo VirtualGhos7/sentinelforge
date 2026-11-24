@@ -10,7 +10,7 @@ This is a tested offline MVP, not the complete enterprise platform described by 
 4. Run live-model repeated trials against labeled datasets, including unconstrained isolated baselines. Validate factual entailment, abstention, recommendation accuracy and cost. The optional live adapter is mock-tested only.
 5. Add real ecosystem version ranges/CPE mapping, source trust review, contradiction resolution and incremental scheduled synchronization.
 6. Complete enterprise case states, expiring risk acceptance, owner editing, notes, attachment handling, notifications, deadlines and SLA enforcement.
-7. Add Docker runtime validation, Trivy/container scanning, dedicated Gitleaks scanning and broader SAST. CI currently has Bandit, Ruff, dependency scans and a supplemental history-pattern scanner.
+7. Add Windows Docker runtime validation, Trivy/container scanning, dedicated Gitleaks scanning and broader SAST. Linux Compose smoke validation passed. CI also has Bandit, Ruff, dependency scans and a supplemental history-pattern scanner.
 
 ## Explicit boundaries
 

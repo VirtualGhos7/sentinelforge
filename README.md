@@ -63,7 +63,7 @@ Local-only demo principals: `analyst`, `approver`, `verifier`, `viewer`, `admin`
 docker compose up --build -d
 ```
 
-Compose binds to `127.0.0.1:8000`, runs non-root with a read-only root filesystem and persists only its named demo volume. Docker was unavailable on the development host; this deployment is provided but **not locally validated**. CI includes a container build check. See [runbook](docs/runbook.md).
+Compose binds to `127.0.0.1:8000`, runs non-root with a read-only root filesystem and persists only its named demo volume. Docker was unavailable on the development host; **Linux CI validated the image build and Compose startup, frontend delivery, login and persisted investigation**. Local Windows Docker behavior remains untested. See [runbook](docs/runbook.md).
 
 ## Strongest demonstration: uncertain report to verified closure
 

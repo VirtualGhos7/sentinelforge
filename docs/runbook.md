@@ -8,4 +8,4 @@ To reproduce browser tests, use a fresh database and the loopback server on port
 
 Back up the SQLite file only while the app is stopped. No high-availability, disaster recovery SLA or backup encryption is configured. Reports can contain imported advisory text; keep imports synthetic when sharing demonstrations. Do not point this application at an existing production database.
 
-Container runtime checks were not possible on the development host. CI builds the image but does not prove deployed health, volume permissions or operational reliability. Validate `docker compose up`, health and the browser workflow before relying on that deployment path.
+Container runtime checks were not possible on the development host. The Linux CI Compose smoke test passed frontend delivery, login and persisted investigation with the named volume and hardening enabled. This does not prove operational reliability or Windows Docker compatibility. `SF_PORT=8001` can select a different loopback host port if 8000 is occupied. Validate your own deployment before relying on it.

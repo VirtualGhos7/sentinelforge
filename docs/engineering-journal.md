@@ -21,3 +21,5 @@ Important remaining debt: normalized persistence, identity federation, independe
 ## Publication and remote validation
 
 Published the reviewed new repository to the authorized GitHub account. The initial remote workflow passed all checks, including Linux tests, browser workflow, dependency audits, SBOM generation and Docker image build. Added a separate Compose deployment smoke test to validate runtime behavior remotely. Bandit flagged its deliberately public local demo password; documented a narrow B105 exception for this fixture credential. It is not an undisclosed real credential or an exception for production authentication.
+
+The revised complete workflow passed, including the hardened Compose deployment on a separate loopback port. The image served the built UI, authenticated the demo analyst and persisted four seeded investigation findings. This adds remote Linux deployment evidence; Windows Docker remains untested. The public tree was checked to exclude private preparation, environment secrets and runtime databases.

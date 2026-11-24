@@ -4,13 +4,14 @@
 - [x] Phase 2: scoped gateway, expiring approvals, simulated changes and independent verification
 - [x] Phase 3: analyst interface and reproducible deterministic adversarial evaluation
 - [x] Phase 4: public ingestion, documentation, host deployment and available security checks
-- [ ] Phase 5: publication review and public repository
+- [x] Phase 5: publication review and public repository
 
 The reliable offline vertical slice takes precedence. Remaining enterprise and live-model capabilities will be listed explicitly in docs/limitations.md.
 
 ## Next increments
 
-- [ ] Validate Docker Compose runtime and container vulnerability scan
+- [x] Validate Docker Compose runtime on the GitHub Linux runner
+- [ ] Add dedicated container vulnerability scanning
 - [ ] Upgrade runtime lifecycle and implement normalized PostgreSQL persistence/migrations
 - [ ] Federated identity, per-user resource scopes and durable audit export
 - [ ] Real independent scanner observations and signed evidence
